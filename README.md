@@ -52,16 +52,13 @@ El objetivo del juego es ordenar los números del 1 al 8 en un tablero de 3x3, m
 
 | Archivo | Descripción |
 |---------|-------------|
-
 | `run.py` | Punto de entrada del programa. Inicia la aplicación creando una instancia de `OchoRompecabezas` |
-
 | `requirements.txt` | Archivo que contiene las dependencias necesarias para ejecutar el proyecto |
 
 ### Directorio `src/`
 
 | Archivo | Descripción |
 |---------|-------------|
-
 | `app.py` | Contains the main application classes: `OchoRompecabezas` (main window) and `PaginaRompecabezas` (game page). Maneja la GUI, eventos de usuario y la resolución del tablero |
 | `config.py` | Define los colores, fuentes y estilos de todos los widgets de la aplicación |
 | `utils.py` | Contains the game logic: `Tablero` class for board operations, `NodoTablero` for the search tree, `A_ESTRELLA` and `BFS` search algorithms |
@@ -141,7 +138,6 @@ python run.py
 
 | Botón | Función |
 |-------|---------|
-
 | **resolver** | Inicia la resolución automática del tablero usando el algoritmo seleccionado |
 | **reiniciar** | Reinicia el tablero al último estado barajado |
 | **mezclar** | Baraja el tablero generando un nuevo estado aleatorio resoluble |
@@ -174,9 +170,7 @@ BFS explora uniformemente todos los nodos al mismo nivel de profundidad antes de
 ### Comparación
 
 | Algoritmo | Velocidad | Profundidad de Búsqueda | Nodos Expandidos |
-
 |-----------|-----------|------------------------|------------------|
-
 | A*        | Rápido    | Menor                 | Menor            |
 | BFS       | Lento     | Mayor                 | Mayor           |
 
