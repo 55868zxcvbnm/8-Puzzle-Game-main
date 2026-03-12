@@ -353,8 +353,17 @@ class PaginaRompecabezas(tk.Frame):
             Tablero.resolver(self.estado_tablero_actual, self.algoritmo.func, self.estado_tablero_objetivo)
 
         if not self.esta_detenido:
-            print(f'Completado en {round(tiempo_transcurrido, 4)} segundo(s) con {len(camino_al_objetivo)} movimientos usando {self.algoritmo.name}')
-            print(f'Tiene una profundidad maxima de busqueda de {profundidad_maxima} y nodos expandidos de {nodos_expandidos}')
+            # Información específica del algoritmo
+            nombre_alg = self.algoritmo.name
+            if nombre_alg == 'A*':
+                info = f'A* - Costo óptimo: {len(camino_al_objetivo)} pasos'
+            elif nombre_alg == 'avara':
+                info = f'Avara - Costo (no óptimo): {len(camino_al_objetivo)} pasos'
+            else:
+                info = f'BFS - Pasos: {len(camino_al_objetivo)}'
+            
+            print(f'{info}')
+            print(f'Tiempo: {round(tiempo_transcurrido, 4)}s | Nodos: {nodos_expandidos} | Prof: {profundidad_maxima}')
             print('Acciones:', *camino_al_objetivo)
         else:
             print('Detenido')

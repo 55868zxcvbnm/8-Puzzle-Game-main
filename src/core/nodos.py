@@ -59,6 +59,10 @@ class NodoTablero(Nodo):
             suma_heuristica += self.funcion_heuristica(x_actual, y_actual, x_objetivo, y_objetivo)
         return suma_heuristica
 
+    def costo_desde_inicio(self):
+        """Retorna g(n) - el costo desde el nodo inicial (profundidad)."""
+        return self.profundidad
+
     def expandir(self):
         """Expande el nodo generando todos los nodos hijos posibles."""
         if not self.nodos:
