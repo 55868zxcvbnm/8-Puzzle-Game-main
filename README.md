@@ -2,15 +2,16 @@
 
 ## Descripción General
 
-Este proyecto es una implementación del clásico juego de tablero 8-Puzzle (también conocido como "Juego del 15" en su versión 3x3) desarrollado en Python utilizando la biblioteca **Tkinter** para la interfaz gráfica de usuario.
+Este proyecto es una implementación del clásico juego de tablero 8-Puzzle desarrollado en Python utilizando la biblioteca **Tkinter** para la interfaz gráfica de usuario.
 
 El objetivo del juego es ordenar los números del 1 al 8 en un tablero de 3x3, moviendo las losetas hacia el espacio vacío. El proyecto incluye algoritmos de inteligencia artificial (IA) para resolver automáticamente el tablero.
 
 ### Características Principales
 
 - **Interfaz gráfica intuitiva** desarrollada con Tkinter
-- **Dos algoritmos de IA** para resolver el tablero:
-  - **A\*** (A-Estrella): Utiliza la distancia Manhattan como función heurística
+- **Tres algoritmos de IA** para resolver el tablero:
+  - **A\*** (A-Estrella): Óptimo, usa distancia Manhattan como heurística
+  - **Avara** (Greedy): Rápido pero puede no ser óptimo
   - **BFS** (Breadth-First Search): Búsqueda en anchura
 - **Contador de movimientos** para seguir el progreso del jugador
 - **Soporte para control** tanto con mouse como con teclado
@@ -20,28 +21,34 @@ El objetivo del juego es ordenar los números del 1 al 8 en un tablero de 3x3, m
 
 ## Estructura del Proyecto
 
-```sh
+```
 8-Puzzle-Game-main/
-├── README.md                  # Documentación del proyecto
-├── requirements.txt            # Dependencias del proyecto
-├── run.py                     # Punto de entrada principal
+├── README.md              # Documentación del proyecto
+├── requirements.txt       # Dependencias del proyecto
+├── run.py                 # Punto de entrada principal
 └── src/
-    ├── __init__.py            # Archivo de inicialización del paquete
-    ├── app.py                 # Lógica de la interfaz gráfica y controladores
-    ├── config.py              # Configuración de estilos y colores
-    ├── utils.py               # Algoritmos de búsqueda y lógica del juego
+    ├── __init__.py
+    ├── app.py             # Lógica de la interfaz gráfica
+    ├── config.py          # Configuración de estilos y colores
+    ├── utils.py           # Compatibilidad - re-exporta desde core
+    ├── algorithms/        # Algoritmos de búsqueda
+    │   ├── __init__.py
+    │   ├── a_estrella.py # Algoritmo A*
+    │   ├── avara.py      # Algoritmo Greedy
+    │   └── bfs.py        # Algoritmo BFS
+    ├── core/             # Núcleo del juego
+    │   ├── __init__.py
+    │   ├── tablero.py    # Clase Tablero
+    │   ├── nodos.py     # Clases Nodo, NodoTablero
+    │   └── heuristica.py# Funciones heurísticas
+    ├── gui/              # Interfaz gráfica (opcional)
+    │   ├── __init__.py
+    │   ├── main_window.py
+    │   └── game_page.py
     └── assets/
         └── images/
-            ├── app.ico        # Icono de la aplicación
-            └── tile_0.png
-                 tile_1.png
-                 tile_2.png
-                 tile_3.png
-                 tile_4.png
-                 tile_5.png
-                 tile_6.png
-                 tile_7.png
-                 tile_8.png    # Imágenes de las losetas del 0 al 8
+            ├── app.ico
+            └── tile_0.png ... tile_8.png
 ```
 
 ---
@@ -52,24 +59,37 @@ El objetivo del juego es ordenar los números del 1 al 8 en un tablero de 3x3, m
 
 | Archivo | Descripción |
 |---------|-------------|
-| `run.py` | Punto de entrada del programa. Inicia la aplicación creando una instancia de `OchoRompecabezas` |
-| `requirements.txt` | Archivo que contiene las dependencias necesarias para ejecutar el proyecto |
+| `run.py` | Punto de entrada del programa. Inicia la aplicación |
+| `requirements.txt` | Dependencias necesarias (pillow) |
 
 ### Directorio `src/`
 
 | Archivo | Descripción |
 |---------|-------------|
-| `app.py` | Contains the main application classes: `OchoRompecabezas` (main window) and `PaginaRompecabezas` (game page). Maneja la GUI, eventos de usuario y la resolución del tablero |
-| `config.py` | Define los colores, fuentes y estilos de todos los widgets de la aplicación |
-| `utils.py` | Contains the game logic: `Tablero` class for board operations, `NodoTablero` for the search tree, `A_ESTRELLA` and `BFS` search algorithms |
-| `__init__.py` | Archivo vacío que marca el directorio como un paquete de Python |
+| `app.py` | Clase principal `OchoRompecabezas` y `PaginaRompecabezas`. Maneja la GUI y resolución del tablero |
+| `config.py` | Colores, fuentes y estilos de la aplicación |
+| `utils.py` | Módulo de compatibilidad que re-exporta desde `core` |
+
+### Directorio `src/algorithms/`
+
+| Archivo | Descripción |
+|---------|-------------|
+| `a_estrella.py` | Algoritmo A* (óptimo) |
+| `avara.py` | Algoritmo Greedy (rápido) |
+| `bfs.py` | Algoritmo BFS (anchura) |
+
+### Directorio `src/core/`
+
+| Archivo | Descripción |
+|---------|-------------|
+| `tablero.py` | Clase `Tablero` con operaciones del tablero |
+| `nodos.py` | Clases `Nodo` y `NodoTablero` para el árbol de búsqueda |
+| `heuristica.py` | Funciones heurísticas (distancia Manhattan) |
 
 ### Directorio `src/assets/images/`
 
-Contiene las imágenes utilizadas en la interfaz:
-
-- `app.ico`: Icono de la ventana de la aplicación
-- `tile_0.png` - `tile_8.png`: Imágenes que representan cada número en el tablero
+- `app.ico`: Icono de la ventana
+- `tile_0.png` - `tile_8.png`: Imágenes de las losetas
 
 ---
 
@@ -78,44 +98,18 @@ Contiene las imágenes utilizadas en la interfaz:
 ### Requisitos del Sistema
 
 - **Python 3.0** o superior
-- **tkinter**: Incluido por defecto en las instalaciones estándar de Python
-- **pillow**: Biblioteca para el manejo de imágenes
+- **tkinter**: Incluido por defecto en Python
+- **pillow**: Biblioteca para imágenes
 
-### Instalación de Dependencias
-
-Para instalar las dependencias necesarias, ejecute:
+### Instalación
 
 ```bash
 pip install -r requirements.txt
-```
-
-El archivo `requirements.txt` tiene la dependencias necesarias para ejecutar el proyecto:
-
-```sh
-pillow==9.2.0
 ```
 
 ---
 
 ## Cómo Ejecutar
-
-### Paso 1: Instalar dependencias
-
-Asegúrese de tener Python instalado y luego instale las dependencias:
-
-```bash
-pip install pillow --upgrade
-```
-
-O simplemente:
-
-```bash
-pip install -r requirements.txt
-```
-
-### Paso 2: Ejecutar el juego
-
-Desde el directorio raíz del proyecto:
 
 ```bash
 python run.py
@@ -127,61 +121,44 @@ python run.py
 
 ### Controles
 
-- **Mouse**: Haga clic en una loseta adyacente al espacio vacío para moverla
-- **Teclado**: Use las teclas de flecha para mover las losetas
-  - Flecha arriba: Mover loseta hacia abajo
-  - Flecha abajo: Mover loseta hacia arriba
-  - Flecha izquierda: Mover loseta hacia la derecha
-  - Flecha derecha: Mover loseta hacia la izquierda
+- **Mouse**: Clic en loseta adyacente al espacio vacío
+- **Teclado**: Flechas para mover las losetas
 
-### Botones de Control
+### Botones
 
 | Botón | Función |
 |-------|---------|
-| **resolver** | Inicia la resolución automática del tablero usando el algoritmo seleccionado |
-| **reiniciar** | Reinicia el tablero al último estado barajado |
-| **mezclar** | Baraja el tablero generando un nuevo estado aleatorio resoluble |
-| **cambiar** | Alterna entre los algoritmos A* y BFS |
-
-### Indicadores
-
-- **Movimientos**: Muestra el número de movimientos realizados
-- **Estado**: Muestra el estado actual del juego (Jugando, Resolviendo, Moviendo, Resuelto, Bien hecho!)
+| **resolver** | Resuelve automáticamente el tablero |
+| **reiniciar** | Reinicia al último estado barajado |
+| **mezclar** | Baraja el tablero |
+| **cambiar** | Alterna entre algoritmos |
 
 ---
 
 ## Algoritmos de Búsqueda
 
 ### A* (A-Estrella)
+- **Función**: f(n) = g(n) + h(n)
+- **Características**: Óptimo y completo con heurística admisible
 
-El algoritmo A* utiliza una función de evaluación que combina:
-
-- **g(n)**: Costo del camino desde el nodo inicial hasta el nodo actual
-- **h(n)**: Estimación del costo desde el nodo actual hasta el objetivo (distancia Manhattan)
-
-Formula: `f(n) = g(n) + h(n)`
-
-A* es completo y óptimo cuando la heurística es admisible (nunca sobrestima el costo real).
+### Avara (Greedy)
+- **Función**: f(n) = h(n)
+- **Características**: Rápido pero puede no ser óptimo
 
 ### BFS (Breadth-First Search)
-
-BFS explora uniformemente todos los nodos al mismo nivel de profundidad antes de pasar al siguiente nivel. Garantiza encontrar la solución óptima en términos de número de movimientos, pero puede ser mucho más lento que A*.
+- **Características**: Garantiza solución con menos movimientos pero puede ser lento
 
 ### Comparación
 
-| Algoritmo | Velocidad | Profundidad de Búsqueda | Nodos Expandidos |
-|-----------|-----------|------------------------|------------------|
-| A*        | Rápido    | Menor                 | Menor            |
-| BFS       | Lento     | Mayor                 | Mayor           |
-
----
-
-## Referencia Académica
-
-Kunkle D. (2001, October 8). [Solving the 8 Puzzle in a Minimum Number of Moves: An Application of the A* Algorithm](https://web.mit.edu/6.034/wwwbob/EightPuzzle.pdf).
+| Algoritmo | Velocidad | Optimalidad |
+|-----------|-----------|-------------|
+| A*        | Media     | Sí          |
+| Avara     | Rápida    | No          |
+| BFS       | Lenta     | Sí          |
 
 ---
 
 ## Licencia
 
 Este proyecto es de uso educativo.
+

@@ -1,0 +1,31 @@
+Opción 1: Mostrar un "mini tablero" del objetivo
+Crear un segundo frame más pequeño al lado del tablero principal
+Mostrar el estado objetivo (0,1,2,3,4,5,6,7,8) como referencia visual
+Así el jugador sabe a qué estado debe llegar
+
+
+Cómo implementar un objetivo aleatorio
+Sería similar al mezclador pero para el objetivo:
+
+1. Modificar la clase Tablero
+Agregar un método crear_objetivo_aleatorio() similar a crear_estado_resoluble()
+Guardar el objetivo actual como variable (no hardcoded)
+2. Actualizar los algoritmos
+Ya funcionan con cualquier objetivo porque NodoTablero usa self.objetivo
+Solo necesitas pasar el objetivo al crear nodos
+3. En la GUI
+Agregar un mini-tablero que muestre el objetivo actual
+Agregar un botón "cambiar objetivo" que genere uno nuevo
+El mezclador baraja el estado inicial, y este nuevo botón establecería un objetivo diferente
+Diferencia clave
+Mezclar: Baraja el estado inicial (起点)
+Cambiar objetivo: Establece un objetivo diferente al (0,1,2,3,4,5,6,7,8)
+Esto permitiría crear puzzles donde el objetivo no es el estado ordenado tradicional, sino cualquier estado resoluble aleatorio.
+
+
+*costo de ruta
+* costo total
+* costo base,etc
+
+
+funciona para generar el arbol
