@@ -84,11 +84,44 @@ class Tablero:
                 return tuple(estado)
 
     @staticmethod
-    def resolver(estado, func):
-        """Resuelve un estado usando el algoritmo de búsqueda especificado."""
+    def crear_objetivo_aleatorio():
+        """Genera un objetivo aleatorio que es resoluble (diferente al estado ordenado)."""
+        while True:
+            objetivo = Tablero.crear_estado_resoluble()
+            # Asegurarse de que no sea el estado objetivo por defecto
+            if objetivo != Tablero.ESTADO_OBJETIVO:
+                return objetivo
+
+    @staticmethod
+    def crear_objetivo_inverso():
+        """Genera el objetivo inverso (8,7,6,5,4,3,2,1,0)."""
+        return tuple(range(8, -1, -1))
+
+    @staticmethod
+    def crear_objetivo_espiral():
+        """Genera el objetivo en espiral (0,1,2,5,8,7,6,3,4)."""
+        return (0, 1, 2, 5, 8, 7, 6, 3, 4)
+
+    @staticmethod
+    def crear_objetivo_diagonal():
+        """Genera el objetivo diagonal (0,4,8,1,5,2,6,3,7)."""
+        return (0, 4, 8, 1, 5, 2, 6, 3, 7)
+
+    @staticmethod
+    def resolver(estado, func, objetivo=None):
+        """Resuelve un estado usando el algoritmo de búsqueda especificado.
+        
+        Args:
+            estado: Estado inicial del tablero
+            func: Función del algoritmo de búsqueda
+            objetivo: Estado objetivo (por defecto es el estado ordenado 0,1,2,3,4,5,6,7,8)
+        """
         from src.core.nodos import NodoTablero
         
-        nodo_tablero = NodoTablero(estado)
+        if objetivo is None:
+            objetivo = Tablero.ESTADO_OBJETIVO
+        
+        nodo_tablero = NodoTablero(estado, objetivo=objetivo)
         tiempo_inicio = time.time()
         nodo_final, nodos_expandidos, profundidad_maxima = func(nodo_tablero)
         tiempo_final = time.time()

@@ -32,11 +32,13 @@ class Nodo:
 class NodoTablero(Nodo):
     """Representa un nodo en el árbol de búsqueda del 8-Puzzle."""
     
-    def __init__(self, estado, accion=None, padre=None, profundidad=0):
+    def __init__(self, estado, objetivo=None, accion=None, padre=None, profundidad=0):
         super().__init__(padre, profundidad)
         self.estado = estado
         self.accion = accion
-        self.objetivo = Tablero.ESTADO_OBJETIVO
+        if objetivo is None:
+            objetivo = Tablero.ESTADO_OBJETIVO
+        self.objetivo = objetivo
         self.funcion_heuristica = distancia_manhattan
 
     def costo(self):
@@ -64,6 +66,7 @@ class NodoTablero(Nodo):
                 nuevo_estado = Tablero.transformar(self.estado, accion)
                 self.agregar_nodo(NodoTablero(
                     nuevo_estado,
+                    objetivo=self.objetivo,
                     accion=accion,
                     padre=self,
                     profundidad=self.profundidad + 1

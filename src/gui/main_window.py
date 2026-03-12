@@ -33,8 +33,8 @@ class OchoRompecabezas(tk.Tk):
 
         # Configuración de la ventana
         self.title('Juego del 8-Puzzle')  # Título de la ventana
-        self.geometry('750x750')  # Tamaño de la ventana
-        self.resizable(False, False)  # Ventana no redimensionable
+        self.geometry('1300x850')  # Tamaño de la ventana
+        self.resizable(True, True)  # Ventana redimensionable
 
         # Establecer el icono de la aplicación
         self.iconbitmap('src/assets/images/app.ico')

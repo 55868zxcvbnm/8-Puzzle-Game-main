@@ -146,7 +146,7 @@ class PaginaRompecabezas(tk.Frame):
             command=lambda: self.resolver_tablero(),
             **PROPIEDADES_BOTON_PRIMARIO
         )
-        self.boton_resolver.grid(row=0, column=0, padx=10, pady=10)
+        self.boton_resolver.pack(side='left', padx=5, pady=10)
 
         # Botón REINICIAR
         self.boton_reiniciar = tk.Button(
@@ -155,7 +155,7 @@ class PaginaRompecabezas(tk.Frame):
             command=lambda: self.reiniciar_tablero(),
             **PROPIEDADES_BOTON_SECUNDARIO
         )
-        self.boton_reiniciar.grid(row=0, column=1, padx=10, pady=10)
+        self.boton_reiniciar.pack(side='left', padx=5, pady=10)
 
         # Botón MEZCLAR
         self.boton_mezclar = tk.Button(
@@ -164,16 +164,34 @@ class PaginaRompecabezas(tk.Frame):
             command=lambda: self.mezclar_tablero(),
             **PROPIEDADES_BOTON_PRIMARIO
         )
-        self.boton_mezclar.grid(row=0, column=2, padx=10, pady=10)
+        self.boton_mezclar.pack(side='left', padx=5, pady=10)
 
-        # Botón CAMBIAR
+        # Botón CAMBIAR ALGORITMO
         self.boton_cambiar = tk.Button(
             self.frame_botones,
-            text='cambiar',
+            text='Cambiar Alg.',
             command=lambda: self.cambiar_algoritmo(),
             **PROPIEDADES_BOTON_TERCIARIO
         )
-        self.boton_cambiar.grid(row=0, column=3, padx=10, pady=10)
+        self.boton_cambiar.pack(side='left', padx=5, pady=10)
+
+        # Botón NUEVO OBJETIVO
+        self.boton_objetivo = tk.Button(
+            self.frame_botones,
+            text='Cambiar Obj.',
+            command=lambda: self.cambiar_objetivo(),
+            **PROPIEDADES_BOTON_PRIMARIO
+        )
+        self.boton_objetivo.pack(side='left', padx=5, pady=10)
+
+        # Botón RESTABLECER OBJETIVO
+        self.boton_restablecer = tk.Button(
+            self.frame_botones,
+            text='Restablecer',
+            command=lambda: self.restablecer_objetivo(),
+            **PROPIEDADES_BOTON_SECUNDARIO
+        )
+        self.boton_restablecer.pack(side='left', padx=5, pady=10)
 
         # Etiquetas de Estado y Movimientos
         self.etiqueta_movimientos = tk.Label(
@@ -191,13 +209,26 @@ class PaginaRompecabezas(tk.Frame):
         self.etiqueta_estado.grid(row=0, column=1, sticky='e', padx=10, pady=5)
 
         self.separador = ttk.Separator(self.frame_rompecabezas, orient='horizontal')
-        self.separador.grid(row=1, columnspan=2, sticky='ew', pady=10)
+        self.separador.grid(row=1, columnspan=3, sticky='ew', pady=10)
 
         # Marco del Tablero (3x3)
         self.frame_tablero = tk.Frame(self.frame_rompecabezas, **PROPIEDADES_FRAME_BASICO)
-        self.frame_tablero.grid(row=2, columnspan=2)
+        self.frame_tablero.grid(row=2, column=0, padx=10)
+
+        # Marco del Tablero Objetivo (3x3) - Mini tablero
+        self.frame_tablero_objetivo = tk.Frame(self.frame_rompecabezas, **PROPIEDADES_FRAME_BASICO)
+        self.frame_tablero_objetivo.grid(row=2, column=1, padx=10)
+
+        # Etiqueta "Objetivo"
+        self.etiqueta_objetivo = tk.Label(
+            self.frame_rompecabezas,
+            text='Objetivo',
+            **PROPIEDADES_ETIQUETA_SUBENCABEZADO
+        )
+        self.etiqueta_objetivo.grid(row=3, column=1, pady=5)
 
         self.inicializar_tablero()
+        self.inicializar_tablero_objetivo()
         self.mezclar_tablero()
 
         # Controles de Teclado
@@ -218,6 +249,63 @@ class PaginaRompecabezas(tk.Frame):
                 padx=10,
                 pady=10
             )
+
+    def inicializar_tablero_objetivo(self):
+        """Crea los 9 botones que forman el tablero del objetivo (mini tablero)."""
+        self.tablero_objetivo = []
+        for indice in range(9):
+            self.tablero_objetivo.append(
+                tk.Button(self.frame_tablero_objetivo, **PROPIEDADES_BOTON_LOSA)
+            )
+            self.tablero_objetivo[indice].grid(
+                row=indice // 3,
+                column=indice % 3,
+                padx=10,
+                pady=10
+            )
+        self.poblar_tablero_objetivo()
+
+    def poblar_tablero_objetivo(self):
+        """Actualiza la visualización del tablero objetivo."""
+        for indice_losa, valor_losa in enumerate(self.estado_tablero_objetivo):
+            self.tablero_objetivo[indice_losa].configure(
+                image=self.imagenes_losas[valor_losa],
+                text=valor_losa,
+                state='disabled'
+            )
+
+    def cambiar_objetivo(self):
+        """Cambia el objetivo al siguiente tipo predefinido."""
+        # Lista de tipos de objetivos disponibles
+        objetivos = [
+            (Tablero.ESTADO_OBJETIVO, 'Objetivo por defecto'),
+            (Tablero.crear_objetivo_inverso(), 'Objetivo inverso'),
+            (Tablero.crear_objetivo_espiral(), 'Objetivo espiral'),
+            (Tablero.crear_objetivo_diagonal(), 'Objetivo diagonal'),
+            (Tablero.crear_objetivo_aleatorio(), 'Objetivo aleatorio'),
+        ]
+        
+        # Buscar el índice del objetivo actual
+        indice_actual = 0
+        for i, (obj, _) in enumerate(objetivos):
+            if obj == self.estado_tablero_objetivo:
+                indice_actual = i
+                break
+        
+        # siguiente objetivo
+        siguiente_indice = (indice_actual + 1) % len(objetivos)
+        self.estado_tablero_objetivo = objetivos[siguiente_indice][0]
+        
+        self.poblar_tablero_objetivo()
+        self.actualizar_estado(objetivos[siguiente_indice][1])
+        self.reiniciar_tablero()
+
+    def restablecer_objetivo(self):
+        """Restablece el objetivo al estado por defecto (0,1,2,3,4,5,6,7,8)."""
+        self.estado_tablero_objetivo = Tablero.ESTADO_OBJETIVO
+        self.poblar_tablero_objetivo()
+        self.actualizar_estado('Objetivo restablecido!')
+        self.reiniciar_tablero()
 
     # ==========================================================================
     # MÉTODOS DE ACTUALIZACIÓN DEL TABLERO
@@ -262,7 +350,7 @@ class PaginaRompecabezas(tk.Frame):
         print('\nBuscando solucion...')
 
         camino_al_objetivo, nodos_expandidos, profundidad_maxima, tiempo_transcurrido = \
-            Tablero.resolver(self.estado_tablero_actual, self.algoritmo.func)
+            Tablero.resolver(self.estado_tablero_actual, self.algoritmo.func, self.estado_tablero_objetivo)
 
         if not self.esta_detenido:
             print(f'Completado en {round(tiempo_transcurrido, 4)} segundo(s) con {len(camino_al_objetivo)} movimientos usando {self.algoritmo.name}')
