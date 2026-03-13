@@ -1,17 +1,13 @@
-# TODO - Implementar Objetivo Aleatorio para 8-Puzzle
+# TODO - Progreso del Plan: Documentación Avara
 
-## Tareas a completar:
+## Plan Aprobado (Completado)
+- [x] Crear `docs/algoritmo-avara.md`
+- [x] Verificar creación del archivo
 
-1. [x] Modificar `src/core/tablero.py`
-   - [x] Agregar método `crear_objetivo_aleatorio()` 
-   - [x] Modificar método `resolver()` para aceptar parámetro `objetivo`
+## Próximos Pasos (Opcionales)
+- [ ] Agregar link en README.md
+- [ ] Probar renderizado Markdown (Mermaid en VSCode/GitHub)
+- [ ] Tareas del proyecto original
 
-2. [x] Modificar `src/core/nodos.py`
-   - [x] Modificar `__init__` de `NodoTablero` para aceptar parámetro `objetivo`
-
-3. [x] Modificar `src/gui/game_page.py`
-   - [x] Agregar mini-tablero (mismo tamaño que el principal) para mostrar objetivo
-   - [x] Agregar botón "Cambiar Objetivo" 
-   - [x] Actualizar `Tablero.resolver()` para pasar el objetivo
-   - [x] Crear método para actualizar visualización del objetivo
+**Estado**: Plan completado exitosamente.
 
