@@ -37,7 +37,7 @@ PROPIEDADES_BOTON_PRIMARIO = {
     'foreground': BLANCO,
     'activebackground': GRIS,
     'activeforeground': BLANCO,
-    'width': 8,
+    'width': 14,
     'border': 0,
     'relief': 'raised'
 }
@@ -48,7 +48,7 @@ PROPIEDADES_BOTON_SECUNDARIO = {
     'foreground': BLANCO,
     'activebackground': GRIS,
     'activeforeground': BLANCO,
-    'width': 8,
+    'width': 14,
     'border': 0,
     'relief': 'raised'
 }
@@ -59,7 +59,7 @@ PROPIEDADES_BOTON_TERCIARIO = {
     'foreground': BLANCO,
     'activebackground': GRIS,
     'activeforeground': BLANCO,
-    'width': 8,
+    'width': 14,
     'border': 0,
     'relief': 'raised'
 }
