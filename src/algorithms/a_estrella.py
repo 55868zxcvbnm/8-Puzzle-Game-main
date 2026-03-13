@@ -21,19 +21,16 @@ from src.utils import NodoTablero
 def a_estrella(nodo_inicial):
     """
     Algoritmo de búsqueda A* (A-Estrella).
-    
+
     A* explora los nodos ordenados por su costo total f(n) = g(n) + h(n).
     Garantiza encontrar la solución óptima cuando la heurística es admisible.
-    
     Args:
         nodo_inicial: NodoTablero con el estado inicial del puzzle
-        
     Returns:
         Tupla con:
         - nodo_final: Nodo objetivo encontrado (o None si no hay solución)
         - nodos_expandidos: Cantidad de nodos expandidos durante la búsqueda
         - profundidad_maxima: Profundidad máxima alcanzada en el árbol de búsqueda
-        
     Funcionamiento:
         1. Usar una priority queue (heap) ordenada por el costo f(n)
         2. Siempre expandir el nodo con menor costo primero
@@ -82,4 +79,3 @@ def a_estrella(nodo_inicial):
 
     # No se encontró solución
     return None, nodos_expandidos, profundidad_maxima
-

@@ -17,21 +17,17 @@ from src.utils import NodoTablero
 def bfs(nodo_inicial):
     """
     Algoritmo de búsqueda en anchura (BFS).
-    
     BFS explora todos los nodos a una profundidad d antes de explorar
     los nodos a profundidad d+1. Garantiza la solución más corta
     (menor número de movimientos) pero puede ser computacionalmente
     costoso para estados complejos.
-    
     Args:
         nodo_inicial: NodoTablero con el estado inicial del puzzle
-        
     Returns:
         Tupla con:
         - nodo_final: Nodo objetivo encontrado (o None si no hay solución)
         - nodos_expandidos: Cantidad de nodos expandidos durante la búsqueda
         - profundidad_maxima: Profundidad máxima alcanzada en el árbol de búsqueda
-        
     Funcionamiento:
         1. Usar una cola (FIFO) para la frontera
         2. Siempre expandir el nodo más antiguo en la frontera
@@ -80,4 +76,3 @@ def bfs(nodo_inicial):
 
     # No se encontró solución
     return None, nodos_expandidos, profundidad_maxima
-

@@ -14,4 +14,3 @@ from src.core import (
 )
 
 __all__ = ['Tablero', 'Nodo', 'NodoTablero', 'distancia_manhattan', 'Algorithm']
-

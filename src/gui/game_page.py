@@ -284,24 +284,24 @@ class PaginaRompecabezas(tk.Frame):
             (Tablero.crear_objetivo_diagonal(), 'Objetivo diagonal'),
             (Tablero.crear_objetivo_aleatorio(), 'Objetivo aleatorio'),
         ]
-        
+
         # Buscar el índice del objetivo actual
         indice_actual = 0
         for i, (obj, _) in enumerate(objetivos):
             if obj == self.estado_tablero_objetivo:
                 indice_actual = i
                 break
-        
+
         # siguiente objetivo
         siguiente_indice = (indice_actual + 1) % len(objetivos)
         self.estado_tablero_objetivo = objetivos[siguiente_indice][0]
-        
+
         self.poblar_tablero_objetivo()
         self.actualizar_estado(objetivos[siguiente_indice][1])
         self.reiniciar_tablero()
 
     def restablecer_objetivo(self):
-        """Restablece el objetivo al estado por defecto (0,1,2,3,4,5,6,7,8)."""
+        """Restablecer el objetivo al estado por defecto (0,1,2,3,4,5,6,7,8)."""
         self.estado_tablero_objetivo = Tablero.ESTADO_OBJETIVO
         self.poblar_tablero_objetivo()
         self.actualizar_estado('Objetivo restablecido!')
@@ -361,7 +361,7 @@ class PaginaRompecabezas(tk.Frame):
                 info = f'Avara - Costo (no óptimo): {len(camino_al_objetivo)} pasos'
             else:
                 info = f'BFS - Pasos: {len(camino_al_objetivo)}'
-            
+
             print(f'{info}')
             print(f'Tiempo: {round(tiempo_transcurrido, 4)}s | Nodos: {nodos_expandidos} | Prof: {profundidad_maxima}')
             print('Acciones:', *camino_al_objetivo)
@@ -506,4 +506,3 @@ class PaginaRompecabezas(tk.Frame):
     def actualizar_estado(self, estado):
         """Actualiza la etiqueta de estado."""
         self.etiqueta_estado.configure(text=estado)
-

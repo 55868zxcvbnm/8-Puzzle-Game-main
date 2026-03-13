@@ -15,4 +15,3 @@ from src.algorithms.avara import avara
 from src.algorithms.bfs import bfs
 
 __all__ = ['a_estrella', 'avara', 'bfs']
-

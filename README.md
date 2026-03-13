@@ -21,7 +21,7 @@ El objetivo del juego es ordenar los números del 1 al 8 en un tablero de 3x3, m
 
 ## Estructura del Proyecto
 
-```
+```sh
 8-Puzzle-Game-main/
 ├── README.md              # Documentación del proyecto
 ├── requirements.txt       # Dependencias del proyecto
@@ -161,4 +161,3 @@ python run.py
 ## Licencia
 
 Este proyecto es de uso educativo.
-

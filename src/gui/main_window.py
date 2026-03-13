@@ -60,7 +60,6 @@ class OchoRompecabezas(tk.Tk):
     def mostrar_frame(self, pagina, *args, **kwargs):
         """
         Muestra una página en el contenedor.
-        
         Args:
             pagina: Clase de la página a mostrar
             *args, **kwargs: Argumentos para pasar a la página
@@ -73,4 +72,3 @@ class OchoRompecabezas(tk.Tk):
 
         # Traer la página al frente
         frame.tkraise()
-

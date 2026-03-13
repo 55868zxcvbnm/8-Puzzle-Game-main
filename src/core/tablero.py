@@ -9,7 +9,6 @@ import random
 import time
 from collections import namedtuple
 
-
 class Tablero:
     """
     Clase estática que contiene todas las operaciones relacionadas con el tablero.
@@ -110,17 +109,16 @@ class Tablero:
     @staticmethod
     def resolver(estado, func, objetivo=None):
         """Resuelve un estado usando el algoritmo de búsqueda especificado.
-        
         Args:
             estado: Estado inicial del tablero
             func: Función del algoritmo de búsqueda
             objetivo: Estado objetivo (por defecto es el estado ordenado 0,1,2,3,4,5,6,7,8)
         """
         from src.core.nodos import NodoTablero
-        
+
         if objetivo is None:
             objetivo = Tablero.ESTADO_OBJETIVO
-        
+
         nodo_tablero = NodoTablero(estado, objetivo=objetivo)
         tiempo_inicio = time.time()
         nodo_final, nodos_expandidos, profundidad_maxima = func(nodo_tablero)
@@ -142,4 +140,3 @@ class Tablero:
 
 # Namedtuple para almacenar un algoritmo con su nombre y función
 Algorithm = namedtuple('Algorithm', ['name', 'func'])
-

@@ -11,7 +11,7 @@ from src.core.heuristica import distancia_manhattan
 
 class Nodo:
     """Clase base para representar un nodo en el árbol de búsqueda."""
-    
+
     def __init__(self, padre=None, profundidad=0):
         self.padre = padre
         self.profundidad = profundidad
@@ -31,7 +31,7 @@ class Nodo:
 
 class NodoTablero(Nodo):
     """Representa un nodo en el árbol de búsqueda del 8-Puzzle."""
-    
+
     def __init__(self, estado, objetivo=None, accion=None, padre=None, profundidad=0):
         super().__init__(padre, profundidad)
         self.estado = estado
@@ -97,4 +97,3 @@ class NodoTablero(Nodo):
 
     def __repr__(self):
         return f'NodoTablero(estado={self.estado}, accion={self.accion}, profundidad={self.profundidad})'
-
