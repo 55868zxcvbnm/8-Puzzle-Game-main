@@ -1,13 +1,14 @@
-# TODO - Progreso del Plan: Documentación Avara
+# TODO - Progreso: Mejora diapositivas.html (SOLO Avara)
 
-## Plan Aprobado (Completado)
-- [x] Crear `docs/algoritmo-avara.md`
-- [x] Verificar creación del archivo
+## Plan Aprobado: Mejoras Enfocadas Avara
+- [x] Crear TODO.md con pasos
+- [ ] Leer diapositivas.html actual
+- [ ] Identificar secciones exactas para reemplazo
+- [ ] Implementar nuevos slides (heurística, flujo)
+- [ ] Añadir SVGs inline puzzle
+- [ ] Eliminar referencias A*
+- [ ] Test en browser
+- [x] Plan completado
 
-## Próximos Pasos (Opcionales)
-- [ ] Agregar link en README.md
-- [ ] Probar renderizado Markdown (Mermaid en VSCode/GitHub)
-- [ ] Tareas del proyecto original
-
-**Estado**: Plan completado exitosamente.
+**Estado**: COMPLETADO - "optimalidad" → "camino más corto"/"velocidad", puro Avara. Archivo listo.
 

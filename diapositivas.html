@@ -261,12 +261,36 @@
                     </ul>
                 </div>
                 <div class="image-box">
-
+                    <svg viewBox="0 0 200 200" style="width: 180px; height: 180px;">
+                        <rect x="10" y="10" width="50" height="50" rx="6" fill="#e2e8f0"/>
+                        <text x="35" y="42" font-size="20" font-weight="bold" fill="#475569">1</text>
+                        <rect x="70" y="10" width="50" height="50" rx="6" fill="#e2e8f0"/>
+                        <text x="95" y="42" font-size="20" font-weight="bold" fill="#475569">2</text>
+                        <rect x="130" y="10" width="50" height="50" rx="6" fill="#e2e8f0"/>
+                        <text x="155" y="42" font-size="20" font-weight="bold" fill="#475569">3</text>
+                        
+                        <rect x="10" y="70" width="50" height="50" rx="6" fill="#e2e8f0"/>
+                        <text x="33" y="102" font-size="20" font-weight="bold" fill="#475569">4</text>
+                        <rect x="70" y="70" width="50" height="50" rx="6" fill="var(--secondary)"/>
+                        <text x="93" y="102" font-size="20" font-weight="bold" fill="white">0</text>
+                        <rect x="130" y="70" width="50" height="50" rx="6" fill="#e2e8f0"/>
+                        <text x="153" y="102" font-size="20" font-weight="bold" fill="#475569">5</text>
+                        
+                        <rect x="10" y="130" width="50" height="50" rx="6" fill="#e2e8f0"/>
+                        <text x="30" y="162" font-size="20" font-weight="bold" fill="#475569">7</text>
+                        <rect x="70" y="130" width="50" height="50" rx="6" fill="#e2e8f0"/>
+                        <text x="90" y="162" font-size="20" font-weight="bold" fill="#475569">6</text>
+                        <rect x="130" y="130" width="50" height="50" rx="6" fill="#e2e8f0"/>
+                        <text x="150" y="162" font-size="20" font-weight="bold" fill="#475569">8</text>
+                        
+                        <text x="100" y="195" font-size="14" text-anchor="middle" fill="#64748b" font-weight="600">h(n) = 3</text>
+                    </svg>
                 </div>
             </div>
         </div>
 
-        <!-- Diapositiva 3: ¿Qué es Avara? -->
+        <!-- Diapositiva 3: ¿Qué es Avara? -->  
+
         <div class="slide" id="slide3">
             <h2>¿Qué es el Algoritmo Avara?</h2>
             <div class="content-grid">
@@ -305,13 +329,9 @@
                         <li><i class="fa-solid fa-check-double"></i> Registra estados visitados para evitar ciclos
                             infinitos.</li>
                     </ul>
-                    <div
-                        style="font-size: 16px; color: #64748b; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px;">
-                        <i class="fa-solid fa-code"></i> Implementación técnica en <strong>avara.py</strong> utilizando
-                        la librería <strong>heapq</strong>.
-                    </div>
+
                 </div>
-                <div class="image-box">
+
 
                 </div>
             </div>
@@ -319,28 +339,7 @@
 
         <!-- Diapositiva 5: Resultados -->
         <div class="slide" id="slide5">
-            <div class="tag">Resultados del Proyecto</div>
-            <h2>Demostración y Resultados</h2>
-            <div class="content-grid" style="grid-template-columns: 1.5fr 1fr;">
-                <div class="image-box">
-
-                </div>
-                <div>
-                    <ul class="bullet-list">
-                        <li style="color: #059669;"><i class="fa-solid fa-gauge-high"></i> <strong>Velocidad:</strong>
-                            Ejecución instantánea (menos de 1 segundo).</li>
-                        <li style="color: #0284c7;"><i class="fa-solid fa-film"></i> <strong>Animación:</strong>
-                            Reproducción fluida de la solución hallada.</li>
-                        <li style="color: #dc2626;"><i class="fa-solid fa-triangle-exclamation"></i>
-                            <strong>Optimalidad:</strong> Encuentra soluciones más largas que A*.</li>
-                    </ul>
-                    <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; margin-top: 20px;">
-                        <p style="font-size: 18px; margin: 0; font-weight: 700; color: var(--primary);">Comparativa de
-                            Pasos:</p>
-                        <p style="font-size: 18px; margin: 0;">Avara: 24 pasos | A*: 16 pasos</p>
-                    </div>
-                </div>
-            </div>
+                <h2>Demostración del Algoritmo Avara</h2>
         </div>
 
         <!-- Diapositiva 6: Conclusión -->
@@ -356,14 +355,15 @@
                     <div class="tile"
                         style="background: #f8fafc; padding: 30px; border-left: 8px solid var(--primary);">
                         <p>✗ No es recomendable si la ruta más corta es obligatoria.</p>
-                        <p>✓ Útil como punto de comparación contra algoritmos óptimos.</p>
+                        <p>✓ Compara bien con otros algoritmos más lentos.</p>
+
                     </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
                     <div
                         style="font-size: 48px; font-weight: 700; color: var(--primary); background: #e0f2f1; padding: 30px; border-radius: 20px; display: inline-block;">
-                        "Avara sacrifica optimalidad por eficiencia extrema"
+"Avara prioriza velocidad sobre el camino más corto"
                     </div>
                 </div>
             </div>
@@ -400,11 +400,26 @@
             }
         }
 
+        // Jump to slide with number keys
         document.addEventListener('keydown', (e) => {
+            const num = parseInt(e.key);
+            if (num >= 1 && num <= totalSlides) {
+                currentSlide = num;
+                updateSlide();
+                e.preventDefault();
+            }
             if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
             if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'f' || e.key === 'F') {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.querySelector('.presentation-container').requestFullscreen();
+                }
+            }
         });
     </script>
+
 </body>
 
 </html>
