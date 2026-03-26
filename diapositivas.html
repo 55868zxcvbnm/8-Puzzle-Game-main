@@ -55,6 +55,7 @@
             display: none;
             flex-direction: column;
             animation: fadeIn 0.5s ease-out;
+            overflow: hidden;
         }
 
         .slide.active {
@@ -345,15 +346,15 @@
         <!-- Diapositiva 6: Conclusión -->
         <div class="slide" id="slide6">
             <h2>Conclusiones – ¿Cuándo usar Avara?</h2>
-            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-around;">
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start;">
                 <div class="two-column" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                     <div class="tile"
-                        style="background: #f8fafc; padding: 30px; border-left: 8px solid var(--secondary);">
+                        style="background: #f8fafc; padding: 20px; border-left: 8px solid var(--secondary);">
                         <p>✓ Excelente para sistemas con recursos limitados o tiempo crítico.</p>
                         <p>✓ Ideal para demostraciones interactivas y prototipado.</p>
                     </div>
                     <div class="tile"
-                        style="background: #f8fafc; padding: 30px; border-left: 8px solid var(--primary);">
+                        style="background: #f8fafc; padding: 20px; border-left: 8px solid var(--primary);">
                         <p>✗ No es recomendable si la ruta más corta es obligatoria.</p>
                         <p>✓ Compara bien con otros algoritmos más lentos.</p>
 
@@ -362,8 +363,8 @@
 
                 <div style="text-align: center; margin-top: 40px;">
                     <div
-                        style="font-size: 48px; font-weight: 700; color: var(--primary); background: #e0f2f1; padding: 30px; border-radius: 20px; display: inline-block;">
-"Avara prioriza velocidad sobre el camino más corto"
+                        style="font-size: 42px; font-weight: 700; color: var(--primary); background: #e0f2f1; padding: 30px; border-radius: 20px; display: inline-block;">
+                        "Avara prioriza velocidad sobre el camino más corto"
                     </div>
                 </div>
             </div>

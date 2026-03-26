@@ -24,20 +24,6 @@ def avara(nodo_inicial):
     Avara explora los nodos ordenados solo por su heurística h(n),
     sin considerar la profundidad del nodo (g(n)).
     Es muy rápido pero puede encontrar soluciones subóptimas.
-    Args:
-        nodo_inicial: NodoTablero con el estado inicial del puzzle
-    Returns:
-        Tupla con:
-        - nodo_final: Nodo objetivo encontrado (o None si no hay solución)
-        - nodos_expandidos: Cantidad de nodos expandidos durante la búsqueda
-        - profundidad_maxima: Profundidad máxima alcanzada en el árbol de búsqueda
-    Funcionamiento:
-        1. Usar una priority queue (heap) ordenada solo por heurística h(n)
-        2. Siempre expandir el nodo que parezca más cercano al objetivo
-        3. NO considera cuántos movimientos se han hecho (g(n))
-    Diferencia con A*:
-        - A*: f(n) = g(n) + h(n)  -> Garantiza solución óptima
-        - avara: f(n) = h(n)       -> Rápido pero puede no ser óptimo
     """
     # Cola de prioridad para la frontera
     # Ordena solo por heurística (distancia Manhattan)

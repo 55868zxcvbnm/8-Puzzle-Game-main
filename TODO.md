@@ -1,14 +1,13 @@
-# TODO - Progreso: Mejora diapositivas.html (SOLO Avara)
+# Corrección de desbordamiento en diapositivas.html
 
-## Plan Aprobado: Mejoras Enfocadas Avara
-- [x] Crear TODO.md con pasos
-- [ ] Leer diapositivas.html actual
-- [ ] Identificar secciones exactas para reemplazo
-- [ ] Implementar nuevos slides (heurística, flujo)
-- [ ] Añadir SVGs inline puzzle
-- [ ] Eliminar referencias A*
-- [ ] Test en browser
-- [x] Plan completado
+## Plan aprobado - Pasos a completar:
 
-**Estado**: COMPLETADO - "optimalidad" → "camino más corto"/"velocidad", puro Avara. Archivo listo.
+- [ ] **Paso 1:** Crear este TODO.md (marcado)
+- [x] **Paso 2:** Editar diapositivas.html 
+  - Añadir `overflow: hidden` a `.slide`
+  - Corregir slide6: `justify-content: flex-start`, reducir paddings tiles a 20px, quote font-size a 42px
+- [ ] **Paso 3:** Verificar navegación (slides 1-6) y heights
+- [ ] **Paso 4:** Completar tarea con demo command
+
+**Estado actual:** Iniciando ediciones CSS y HTML.
 

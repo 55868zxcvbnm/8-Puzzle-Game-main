@@ -43,6 +43,7 @@ class Tablero:
         indice_vacio = estado.index(0)
 
         match accion:
+            # arriba, abajo, izquierda, derecha
             case 'U':
                 estado[indice_vacio], estado[indice_vacio - 3] = \
                     estado[indice_vacio - 3], estado[indice_vacio]
